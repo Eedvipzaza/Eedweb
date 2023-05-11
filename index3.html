@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu with Hover Effect</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+
+		nav {
+			background-color: #333;
+			padding: 20px;
+		}
+
+		nav ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		nav ul li {
+			margin-right: 20px;
+			position: relative;
+		}
+
+		nav ul li a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+			padding: 10px;
+			transition: all 0.3s ease;
+			display: block;
+		}
+
+		nav ul li a:hover {
+			background-color: #fff;
+			color: #333;
+		}
+
+		nav ul li a:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			z-index: -1;
+			transform: scaleX(0);
+			transform-origin: right;
+			transition: all 0.3s ease;
+		}
+
+		nav ul li a:hover:before {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="paper1.html">paper1</a></li>
+			<li><a href="paper2.html">paper2</a></li>
+		</ul>
+	</nav>
+</body>
+</html>
+
+<!DOCTYPE html>
+<!-- นาฬิกา -->
+<html>
+<head>
+    <title>Digital Clock</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock {
+    color: rgb(0, 0, 0);
+}
+
+#time {
+    font-size: 48px;
+    color: #00c3ff;
+}
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <h1 id="time"></h1>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function updateTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("time").textContent = hours + ":" + minutes + ":" + seconds;
+}
+
+setInterval(updateTime, 1000);
+
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment Box with Delete</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.comment-box {
+    width: 500px;
+    margin: 0 auto;
+    color: #00c3ff;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #00c3ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.comment {
+    background-color: #f5f5f5;
+    padding: 10px;
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #49a900;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="comment-box">
+        <h2>Comments</h2>
+        <form id="commentForm">
+            <textarea id="commentInput" placeholder="Write a comment" required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+        <button id="deleteAllButton">Delete All Comments</button>
+        <ul id="commentList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("commentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var commentInput = document.getElementById("commentInput");
+    var commentText = commentInput.value;
+
+    var listItem = document.createElement("li");
+    var commentDiv = document.createElement("div");
+    commentDiv.className = "comment";
+    commentDiv.textContent = commentText;
+
+    var deleteButton = document.createElement("button");
+    deleteButton.className = "delete-button";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", function() {
+        listItem.remove();
+    });
+
+    commentDiv.appendChild(deleteButton);
+    listItem.appendChild(commentDiv);
+
+    document.getElementById("commentList").appendChild(listItem);
+
+    commentInput.value = "";
+});
+
+document.getElementById("deleteAllButton").addEventListener("click", function() {
+    var commentList = document.getElementById("commentList");
+    while (commentList.firstChild) {
+        commentList.removeChild(commentList.firstChild);
+    }
+});
+
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Background Switch</title>
+    <style>
+        body {
+            transition: background-color 0.5s;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-black {
+            background-color: black;
+            color: white;
+        }
+
+        .button-white {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="button button-black" onclick="changeToBlack()">Change to Black</button>
+        <button class="button button-white" onclick="changeToWhite()">Change to White</button>
+    </div>
+
+    <script>
+        function changeToBlack() {
+            document.body.style.backgroundColor = 'black';
+        }
+
+        function changeToWhite() {
+            document.body.style.backgroundColor = 'white';
+        }
+    </script>
+</body>
+</html>
